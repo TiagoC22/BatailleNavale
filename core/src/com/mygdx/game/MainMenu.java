@@ -5,16 +5,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import sun.applet.Main;
+
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
@@ -30,9 +35,12 @@ public class MainMenu extends ScreenAdapter {
     private Image backgroundImage;
 
     private Texture buttonTexturePlay;
+    private Texture buttonTexturePlayDown;
     private Texture buttonTextureExit;
     private Image buttonPlay;
+    private Image buttonPlayDown;
     private Image buttonExit;
+    
 
 
     public MainMenu(final Game game)
@@ -43,17 +51,21 @@ public class MainMenu extends ScreenAdapter {
     @Override
     public void show()
     {
+    	
+    
+        
         stage = new Stage(new FitViewport(WORLD_WIDTH,WORLD_HEIGHT));
     // Add a background
-        background = new Texture(Gdx.files.internal("wallpaper.jpg"));
+        background = new Texture(Gdx.files.external("wallpaper.jpg"));
         backgroundImage = new Image(background);
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
     //Create ButtonPlayTexture
-        buttonTexturePlay = new Texture(Gdx.files.internal("ui/button_play.up.png"));
+        buttonTexturePlay = new Texture(Gdx.files.external("button_play.up.png"));
+        buttonTexturePlayDown = new Texture(Gdx.files.external("button_play.down.png"));
     //Create ButtonPlayTexture
-        buttonTextureExit = new Texture(Gdx.files.internal("ui/button_exit.up.png"));
-
+        buttonTextureExit = new Texture(Gdx.files.external("button_exit.up.png"));
+        
     //Create ExitButton
         buttonExit = new Image(buttonTextureExit);
         buttonExit.setPosition(WORLD_WIDTH / 2+100 ,WORLD_HEIGHT / 2-200);
@@ -73,27 +85,44 @@ public class MainMenu extends ScreenAdapter {
         backgroundImage.addAction(sequence(Actions.alpha(0),Actions.fadeIn(3,Interpolation.pow2In)));
         buttonPlay.addAction(sequence(Actions.alpha(0),Actions.delay(1),Actions.fadeIn(1,Interpolation.pow2In)));
         buttonExit.addAction(sequence(Actions.alpha(0),Actions.delay(1),Actions.fadeIn(1,Interpolation.pow2In)));
-
+        
     //ActionListener PlayButton
         buttonPlay.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event,float x,float y) {
                 game.setScreen( new GameScreen(game) );
-                System.out.print("test");
-                dispose();
             };
         });
+        
+        buttonPlay.addListener(new InputListener() {
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	buttonPlay = new Image(buttonTexturePlayDown);
+            	buttonPlay.setPosition(WORLD_WIDTH / 2-250 ,WORLD_HEIGHT / 2-200);
+            	stage.addActor(buttonPlay);
+				return false;
+            };
+        });
+        
+        buttonPlay.addListener(new InputListener() {
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	buttonPlay = new Image(buttonTexturePlay);
+            	buttonPlay.setPosition(WORLD_WIDTH / 2-250 ,WORLD_HEIGHT / 2-200);
+            	stage.addActor(buttonPlay);
+            };
+        });
+            
 
     //ActionListener ExitButton
         buttonExit.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event,float x,float y) {
-                Gdx.app.exit();
+                Gdx.app.exit();                
             };
         });
 
 
     }
+    
 
 
     @Override
