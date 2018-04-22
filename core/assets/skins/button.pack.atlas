@@ -1,0 +1,34 @@
+
+button.pack.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+button_exit_down
+  rotate: false
+  xy: 2, 2
+  size: 166, 68
+  orig: 166, 68
+  offset: 0, 0
+  index: -1
+button_exit_up
+  rotate: false
+  xy: 170, 2
+  size: 166, 68
+  orig: 166, 68
+  offset: 0, 0
+  index: -1
+button_play_down
+  rotate: false
+  xy: 338, 2
+  size: 166, 68
+  orig: 166, 68
+  offset: 0, 0
+  index: -1
+button_play_up
+  rotate: false
+  xy: 506, 2
+  size: 166, 68
+  orig: 166, 68
+  offset: 0, 0
+  index: -1

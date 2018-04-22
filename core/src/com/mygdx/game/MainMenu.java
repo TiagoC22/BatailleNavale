@@ -3,18 +3,20 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import sun.applet.Main;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
@@ -29,62 +31,37 @@ public class MainMenu extends ScreenAdapter {
     private Texture background;
     private Image backgroundImage;
 
-    private Texture buttonTexturePlay;
-    private Texture buttonTextureExit;
-    private Image buttonPlay;
-    private Image buttonExit;
-
+    private Button buttonPlay;
+    private Button buttonExit;
 
     public MainMenu(final Game game)
     {
         this.game = game;
+        create();
     }
 
     @Override
     public void show()
     {
-        stage = new Stage(new FitViewport(WORLD_WIDTH,WORLD_HEIGHT));
-    // Add a background
+        //Musique
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sound/soundtrack.mp3"));
+        sound.play(1.0f);
+
         background = new Texture(Gdx.files.internal("wallpaper.jpg"));
         backgroundImage = new Image(background);
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
-    //Create ButtonPlayTexture
-        buttonTexturePlay = new Texture(Gdx.files.internal("ui/button_play.up.png"));
-    //Create ButtonPlayTexture
-        buttonTextureExit = new Texture(Gdx.files.internal("ui/button_exit.up.png"));
-
-    //Create ExitButton
-        buttonExit = new Image(buttonTextureExit);
-        buttonExit.setPosition(WORLD_WIDTH / 2+100 ,WORLD_HEIGHT / 2-200);
-        buttonExit.setWidth(166);
-        buttonExit.setHeight(68);
+        stage.addActor(buttonPlay);
         stage.addActor(buttonExit);
 
-    //Create PlayButton
-        buttonPlay = new Image(buttonTexturePlay);
-        buttonPlay.setPosition(WORLD_WIDTH / 2-250 ,WORLD_HEIGHT / 2-200);
-        buttonPlay.setWidth(166);
-        buttonPlay.setHeight(68);
-        stage.addActor(buttonPlay);
-
-        Gdx.input.setInputProcessor(stage);
-
-        backgroundImage.addAction(sequence(Actions.alpha(0),Actions.fadeIn(3,Interpolation.pow2In)));
-        buttonPlay.addAction(sequence(Actions.alpha(0),Actions.delay(1),Actions.fadeIn(1,Interpolation.pow2In)));
-        buttonExit.addAction(sequence(Actions.alpha(0),Actions.delay(1),Actions.fadeIn(1,Interpolation.pow2In)));
-
-    //ActionListener PlayButton
+        //Bouton qui envoie le screen bleu de la bataille navale
         buttonPlay.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event,float x,float y) {
                 game.setScreen( new GameScreen(game) );
-                System.out.print("test");
-                dispose();
             };
         });
 
-    //ActionListener ExitButton
         buttonExit.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event,float x,float y) {
@@ -92,7 +69,10 @@ public class MainMenu extends ScreenAdapter {
             };
         });
 
-
+        //Effet d'apparition background + boutons
+        backgroundImage.addAction(sequence(Actions.alpha(0),Actions.fadeIn(3,Interpolation.pow2In)));
+        buttonPlay.addAction(sequence(Actions.alpha(0),Actions.delay(1),Actions.fadeIn(1,Interpolation.pow2In)));
+        buttonExit.addAction(sequence(Actions.alpha(0),Actions.delay(1),Actions.fadeIn(1,Interpolation.pow2In)));
     }
 
 
@@ -108,4 +88,23 @@ public class MainMenu extends ScreenAdapter {
         stage.act();
         stage.draw();
     }
+
+    public void create () {
+        stage = new Stage(new FitViewport(WORLD_WIDTH,WORLD_HEIGHT));
+        Gdx.input.setInputProcessor (stage);
+        Skin buttonsStyle = new Skin(Gdx.files.internal("skins/button.json"),new TextureAtlas("skins/button.pack.atlas"));
+        buttonPlay = new ImageButton(buttonsStyle, "buttonP") ;
+        buttonPlay.setX(WORLD_WIDTH / 2-250);
+        buttonPlay.setY(WORLD_HEIGHT / 2-200);
+        buttonPlay.setWidth(166);
+        buttonPlay.setHeight(68);
+
+        buttonExit = new ImageButton(buttonsStyle, "buttonE") ;
+        buttonExit.setX(WORLD_WIDTH / 2+100);
+        buttonExit.setY(WORLD_HEIGHT / 2-200);
+        buttonExit.setWidth(166);
+        buttonExit.setHeight(68);
+
+    }
+
 }

@@ -1,0 +1,20 @@
+{
+  com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+    buttonP: {
+      down: button_play_down,
+      up: button_play_up,
+      checked: button_play_up
+    },
+
+    buttonE: {
+      down: button_exit_down,
+      up: button_exit_up,
+      checked: button_exit_up
+    },
+
+    camera: {
+      down: button_play_down,
+      up: button_play_up
+    }
+  }
+}
