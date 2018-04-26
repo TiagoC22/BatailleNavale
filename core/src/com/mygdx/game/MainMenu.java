@@ -43,8 +43,8 @@ public class MainMenu extends ScreenAdapter {
     public void show()
     {
         //Musique
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sound/soundtrack.mp3"));
-        long soundtrack = sound.play(1.0f);
+        final Sound sound = Gdx.audio.newSound(Gdx.files.internal("sound/soundtrack.mp3"));
+        final long soundtrack = sound.play(1.0f);
 
         background = new Texture(Gdx.files.internal("wallpaper.jpg"));
         backgroundImage = new Image(background);
