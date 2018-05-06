@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Cell extends Actor {
 
-    private final Texture cellBG = new Texture(Gdx.files.internal("cell.png"));
+    private final Texture cellBG = new Texture(Gdx.files.internal("cell.jpg"));
 
     private int posX;
     private int posY;
