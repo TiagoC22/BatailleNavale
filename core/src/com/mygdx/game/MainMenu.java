@@ -23,7 +23,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 public class MainMenu extends ScreenAdapter {
     private int WORLD_WIDTH = Gdx.graphics.getWidth();
     private int WORLD_HEIGHT = Gdx.graphics.getHeight();
-    private Game game;
+    private MyGdxGame game;
     private Stage stage;
 
 
@@ -33,7 +33,7 @@ public class MainMenu extends ScreenAdapter {
     private Button buttonPlay;
     private Button buttonExit;
 
-    public MainMenu(final Game game)
+    public MainMenu(MyGdxGame game)
     {
         this.game = game;
         create();

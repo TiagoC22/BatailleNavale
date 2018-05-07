@@ -7,20 +7,31 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Cell extends Actor {
 
-    private final Texture cellBG = new Texture(Gdx.files.internal("cell.jpg"));
-
     private int posX;
     private int posY;
 
     private int gridX;
     private int gridY;
 
-    public Cell(int x, int y, int gridX, int gridY){
+    
+    private Texture bgIcon;
+    private Texture currentIcon;
+
+    public Cell(int x, int y, int gridX, int gridY, Texture bgIcon){
         this.posX = x;
         this.posY = y;
         this.gridX = gridX;
         this.gridY = gridY;
-        setBounds(x, y, cellBG.getWidth(), cellBG.getHeight());
+        this.bgIcon = bgIcon;
+        setBounds(x, y, this.bgIcon.getWidth(), this.bgIcon.getHeight());
+    }
+
+    public void setCurrentIcon(Texture newIcon){
+        this.currentIcon = newIcon;
+    }
+
+    public void setBGIcon(Texture newBGIcon){
+        this.bgIcon = newBGIcon;
     }
 
     public void act(float delta){
@@ -28,6 +39,10 @@ public class Cell extends Actor {
     }
 
     public void draw(Batch batch, float a){
-        batch.draw(cellBG, posX, posY, posX / gridX, posY / gridY);
+        batch.draw(this.bgIcon, posX, posY, posX / gridX, posY / gridY);
+
+        if(this.currentIcon != null){
+            batch.draw(this.currentIcon, posX, posY, posX / gridX, posY / gridY);
+        }
     }
 }

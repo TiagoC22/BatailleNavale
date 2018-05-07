@@ -19,16 +19,16 @@ public class GameScreen extends ScreenAdapter {
 
     private Texture background;
     private Image backgroundImage2;
-    private final Game game;
+    private final MyGdxGame game;
 
-    public GameScreen(Game game)
+    public GameScreen(MyGdxGame game)
     {
         this.game = game;
     }
 
     @Override
     public void show() {
-        stage = new Stage(new FitViewport(WORLD_WIDTH,WORLD_HEIGHT));
+        stage = new Stage(new FitViewport(WORLD_WIDTH,WORLD_HEIGHT),this.game.getBatch());
 
         background = new Texture(Gdx.files.internal("wallpaper2.jpg"));
         backgroundImage2 = new Image(background);
