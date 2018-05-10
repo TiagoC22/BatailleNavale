@@ -36,6 +36,8 @@ public class GameScreen extends ScreenAdapter {
         stage.addActor(backgroundImage2);
 
         Grid grid = new Grid();
+        grid.setX(WORLD_WIDTH / 2-400);
+        grid.setY(WORLD_HEIGHT / 2-200);
         stage.addActor(grid);
 
 
