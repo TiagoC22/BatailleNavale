@@ -1,6 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.mygdx.game.Actors.Grid;
 
 public class GameScreen extends ScreenAdapter {
 
@@ -37,7 +35,7 @@ public class GameScreen extends ScreenAdapter {
 
         Grid grid = new Grid();
         grid.setX(WORLD_WIDTH / 2-400);
-        grid.setY(WORLD_HEIGHT / 2-200);
+        grid.setY(WORLD_HEIGHT / 2-250);
         stage.addActor(grid);
 
 
