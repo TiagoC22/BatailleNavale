@@ -1,17 +1,15 @@
 package com.mygdx.game.desktop;
 
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.game.MyGdxGame;
+
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import com.badlogic.gdx.Files.FileType;
-import com.badlogic.gdx.tools.texturepacker.TexturePacker;
+
 import com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings;
+import com.mygdx.game.TheGame;
 
 public class DesktopLauncher {
 
@@ -36,6 +34,6 @@ public class DesktopLauncher {
         config.height = height;
         config.width = width;
 
-        new LwjglApplication(new MyGdxGame(), config);
+        new LwjglApplication(new TheGame(), config);
     }
 }
