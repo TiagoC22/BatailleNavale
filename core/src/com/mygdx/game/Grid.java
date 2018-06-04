@@ -1,56 +1,131 @@
-
 package com.mygdx.game;
 
+import boats.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.mygdx.game.Cell;
-
-public class Grid extends Group{
-
-    private float gridWidth = (float)(Gdx.graphics.getWidth() * 0.6);
-    private float gridHeight = (float)(Gdx.graphics.getHeight() * 0.7);
-
-    private int gridRow = 11;
-    private int gridColumn = 11;
-
-    private final Texture cellBG = new Texture(Gdx.files.internal("cell.jpg"));
-    Skin Skin = new Skin(Gdx.files.internal("uiskin.json"));
-    private final Texture headerBG = new Texture(Gdx.files.internal("headercell.png"));
+import java.awt.*;
 
 
+public class Grid
+{
+    public static int gridSize = 10;
+    public static int cellSize = 64;
+
+    private Texture gridbackground;
+    private Texture missSprite;
+    protected Array<Boat> shipArray;
+    private Array<Point> tryFindPos;
 
 
-    public Grid(){
-        for(int i=1; i<gridColumn; i++) {
-            for(int j=1; j<gridRow; j++) {
-                if(i == 1){
-                    Table table = new Table();
-                    Label labeltest = new Label("A1", Skin);
-                    Cell headerRow = new Cell (((int)gridWidth / gridColumn) * i, ((int)gridHeight / gridRow ) * j, i, j, headerBG) ;
-                    table.add(headerRow);
-                    table.add(labeltest);
-                    headerRow.setUserObject(labeltest);
-                    labeltest.setZIndex(1);
-                    table.getCell(headerRow).size(0, 0);
-                    addActor(table);
+    public Grid(Texture txBg, Texture txMiss, Texture txCenter, Texture txEdge)
+    {
+
+        gridbackground = txBg;
+        missSprite = txMiss;
+        shipArray = new Array<Boat>();
+        tryFindPos = new Array<Point>();
+        Sprite sCenter = new Sprite(txCenter);
+        Sprite sEdge = new Sprite(txEdge);
+        shipArray.add(new porte_avion(sCenter, sEdge));
+        shipArray.add(new cuirasser(sCenter, sEdge));
+        shipArray.add(new croiseur(sCenter, sEdge));
+        shipArray.add(new sous_marin(sCenter, sEdge));
+        shipArray.add(new destructeur(sCenter, sEdge));
+    }
 
 
-                }
-                if(j == 10){
-                    Cell headerColumn = new Cell(((int)gridWidth / gridColumn) * i, ((int)gridHeight / gridRow ) * j, i, j, headerBG) ;
-                    addActor(headerColumn);
-                }
-                if(i != 1 && j != 10){
-                    Cell cell = new Cell( ((int)gridWidth / gridColumn) * i, ((int)gridHeight / gridRow ) * j, i, j, cellBG) ;
-                    addActor(cell);
+    public void reset() {
+        for(Boat s : shipArray)
+            s.reset();
+        tryFindPos.clear();
+    }
+
+
+    public void draw(boolean bHidden, Batch bBatch) {
+        bBatch.draw(gridbackground, 0, 0);
+        for(Point p : tryFindPos)
+            bBatch.draw(missSprite, p.x * cellSize, p.y * cellSize);
+        for(Boat s : shipArray)
+            s.draw(bHidden, bBatch);
+    }
+
+
+    public boolean boardClean() {
+        for(Boat s : shipArray) {
+            if(!s.degat())
+                return false;
+        } return true;
+    }
+
+
+    public int shipsLeft() {
+        int numLeft = 0;
+        for(Boat s : shipArray) {
+            if(!s.degat()) numLeft++;
+        }
+        return numLeft;
+    }
+
+
+    public void boatShuffle() {
+        for(Boat s : shipArray)
+            s.setPosition(-1, -1);
+        for(int i = 0; i < shipArray.size; i++) {
+            int xPos = -1, yPos = -1;
+            while(xPos < 0 || yPos < 0) {
+                shipArray.get(i).setHorizontal(MathUtils.randomBoolean());
+                if(shipArray.get(i).horizontal()) {
+                    xPos = MathUtils.random(0, gridSize - shipArray.get(i).getSize());
+                    yPos = MathUtils.random(0, gridSize - 1);
+                } else {
+                    xPos = MathUtils.random(0, gridSize - 1);
+                    yPos = MathUtils.random(0, gridSize - shipArray.get(i).getSize());
+                } shipArray.get(i).setPosition(xPos, yPos);
+
+
+                for(int j = 0; j < i; j++) {
+                    if(shipArray.get(i).boatPositionError(shipArray.get(j))) {
+                        xPos = yPos = -1;
+                        break;
+                    }
                 }
             }
         }
     }
 
+    public boolean alreadyFired(int xPos, int yPos) {
+        for(Point p : tryFindPos) {
+            if (p.x == xPos && p.y == yPos)
+                return true;
+        } for(Boat s : shipArray) {
+            if(s.boatHitNow(xPos, yPos))
+                return true;
+        } return false;
+    }
+
+
+    public Boat firePos(int xPos, int yPos) {
+        for(Boat s : shipArray) {
+            if(s.boatFire(xPos, yPos))
+                return s;
+        } tryFindPos.add(new Point(xPos, yPos));
+          return null;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
