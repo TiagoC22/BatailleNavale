@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.awt.*;
 
-
+//GridPlayer
 public class Grid_player extends Grid {
     private Point pointeurMousePos;
     private int place;

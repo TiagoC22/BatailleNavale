@@ -21,20 +21,20 @@ public class Grid
     private Array<Point> tryFindPos;
 
 
-    public Grid(Texture txBg, Texture txMiss, Texture txCenter, Texture txEdge)
+    public Grid(Texture texturebackground, Texture texturemiss, Texture texturecenter, Texture textureSE)
     {
 
-        gridbackground = txBg;
-        missSprite = txMiss;
+        gridbackground = texturebackground;
+        missSprite = texturemiss;
         shipArray = new Array<Boat>();
         tryFindPos = new Array<Point>();
-        Sprite sCenter = new Sprite(txCenter);
-        Sprite sEdge = new Sprite(txEdge);
-        shipArray.add(new porte_avion(sCenter, sEdge));
-        shipArray.add(new cuirasser(sCenter, sEdge));
-        shipArray.add(new croiseur(sCenter, sEdge));
-        shipArray.add(new sous_marin(sCenter, sEdge));
-        shipArray.add(new destructeur(sCenter, sEdge));
+        Sprite spriteCent = new Sprite(texturecenter);
+        Sprite spriteSE = new Sprite(textureSE);
+        shipArray.add(new porte_avion(spriteCent, spriteSE));
+        shipArray.add(new cuirasser(spriteCent, spriteSE));
+        shipArray.add(new croiseur(spriteCent, spriteSE));
+        shipArray.add(new sous_marin(spriteCent, spriteSE));
+        shipArray.add(new destructeur(spriteCent, spriteSE));
     }
 
 
