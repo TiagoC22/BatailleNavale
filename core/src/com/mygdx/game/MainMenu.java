@@ -2,7 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,10 +20,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
-public class MainMenu extends ScreenAdapter {
+public class MainMenu extends Game implements Screen  {
     private int WORLD_WIDTH = Gdx.graphics.getWidth();
     private int WORLD_HEIGHT = Gdx.graphics.getHeight();
-    private MyGdxGame game;
+    private TheGame game;
     private Stage stage;
 
 
@@ -33,7 +33,7 @@ public class MainMenu extends ScreenAdapter {
     private Button buttonPlay;
     private Button buttonExit;
 
-    public MainMenu(MyGdxGame game)
+    public MainMenu(TheGame game)
     {
         this.game = game;
         create();
@@ -57,7 +57,7 @@ public class MainMenu extends ScreenAdapter {
         buttonPlay.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event,float x,float y) {
-                game.setScreen( new GameScreen(game) );
+                game.setScreen(new BN(game));
                 sound.stop(soundtrack);
             };
         });
@@ -79,6 +79,26 @@ public class MainMenu extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
     }
 
     public void render(float delta)
