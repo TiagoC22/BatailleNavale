@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 
+//Projet bataille navale - UPMC 2018 @Tiago @Gautier
 
 public abstract class Boat {
 

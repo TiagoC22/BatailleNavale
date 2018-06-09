@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.awt.*;
 
+
 //GridPlayerClass
 public class Grid_player extends Grid {
     private Point pointeurMousePos;
@@ -24,7 +25,7 @@ public class Grid_player extends Grid {
 
     public boolean placeShip(int xPos, int yPos) {
         if(place >= 0 && place < shipArray.size) {
-            moveShip(xPos, yPos);
+            movingShip(xPos, yPos);
             boolean boatPlacerSucess = true;
             for(int i = 0; i < shipArray.size; i++) {
                 if(i == place)
@@ -40,7 +41,7 @@ public class Grid_player extends Grid {
     }
 
 
-    public void moveShip(int xPos, int yPos) {
+    public void movingShip(int xPos, int yPos) {
         pointeurMousePos.x = xPos;
         pointeurMousePos.y = yPos;
         if(place >= 0 && place < shipArray.size) {
@@ -60,7 +61,7 @@ public class Grid_player extends Grid {
         if(place >= 0 && place < shipArray.size) {
             Boat sPlace = shipArray.get(place);
             sPlace.setHorizontal(sPlace.vertical());
-            moveShip(pointeurMousePos.x, pointeurMousePos.y);
+            movingShip(pointeurMousePos.x, pointeurMousePos.y);
         }
     }
 }

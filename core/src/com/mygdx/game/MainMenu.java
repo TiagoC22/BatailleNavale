@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
+//Projet bataille navale - UPMC 2018 @Tiago @Gautier
+
 public class MainMenu extends Game implements Screen  {
     private int WORLD_WIDTH = Gdx.graphics.getWidth();
     private int WORLD_HEIGHT = Gdx.graphics.getHeight();
@@ -33,15 +35,13 @@ public class MainMenu extends Game implements Screen  {
     private Button buttonPlay;
     private Button buttonExit;
 
-    public MainMenu(TheGame game)
-    {
+    public MainMenu(TheGame game) {
         this.game = game;
         create();
     }
 
     @Override
-    public void show()
-    {
+    public void show() {
         //Musique
         final Sound sound = Gdx.audio.newSound(Gdx.files.internal("sound/soundtrack.mp3"));
         final long soundtrack = sound.play(1.0f);
@@ -83,26 +83,21 @@ public class MainMenu extends Game implements Screen  {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
-
     }
 
-    public void render(float delta)
-    {
+    public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(0, 0, 0,0);
         stage.act();
@@ -124,7 +119,5 @@ public class MainMenu extends Game implements Screen  {
         buttonExit.setY(WORLD_HEIGHT / 2-200);
         buttonExit.setWidth(166);
         buttonExit.setHeight(68);
-
     }
-
 }

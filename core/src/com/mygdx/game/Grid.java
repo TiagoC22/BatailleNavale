@@ -9,9 +9,9 @@ import com.badlogic.gdx.utils.Array;
 
 import java.awt.*;
 
+//Projet bataille navale - UPMC 2018 @Tiago @Gautier
 
-public class Grid
-{
+public class Grid {
     public static int gridSize = 10;
     public static int cellSize = 64;
 
@@ -21,9 +21,7 @@ public class Grid
     private Array<Point> tryFindPos;
 
 
-    public Grid(Texture texturebackground, Texture texturemiss, Texture texturecenter, Texture textureSE)
-    {
-
+    public Grid(Texture texturebackground, Texture texturemiss, Texture texturecenter, Texture textureSE) {
         gridbackground = texturebackground;
         missSprite = texturemiss;
         shipArray = new Array<Boat>();
@@ -45,12 +43,12 @@ public class Grid
     }
 
 
-    public void draw(boolean bHidden, Batch bBatch) {
-        bBatch.draw(gridbackground, 0, 0);
+    public void draw(boolean hide, Batch batch) {
+        batch.draw(gridbackground, 0, 0);
         for(Point p : tryFindPos)
-            bBatch.draw(missSprite, p.x * cellSize, p.y * cellSize);
+            batch.draw(missSprite, p.x * cellSize, p.y * cellSize);
         for(Boat s : shipArray)
-            s.draw(bHidden, bBatch);
+            s.draw(hide, batch);
     }
 
 
@@ -62,7 +60,7 @@ public class Grid
     }
 
 
-    public int shipsLeft() {
+    public int boatLT() {
         int numLeft = 0;
         for(Boat s : shipArray) {
             if(!s.degat()) numLeft++;
@@ -85,8 +83,6 @@ public class Grid
                     xPos = MathUtils.random(0, gridSize - 1);
                     yPos = MathUtils.random(0, gridSize - shipArray.get(i).getSize());
                 } shipArray.get(i).setPosition(xPos, yPos);
-
-
                 for(int j = 0; j < i; j++) {
                     if(shipArray.get(i).boatPositionError(shipArray.get(j))) {
                         xPos = yPos = -1;
@@ -97,7 +93,7 @@ public class Grid
         }
     }
 
-    public boolean alreadyFired(int xPos, int yPos) {
+    public boolean fireInBoatNow(int xPos, int yPos) {
         for(Point p : tryFindPos) {
             if (p.x == xPos && p.y == yPos)
                 return true;
