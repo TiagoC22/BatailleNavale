@@ -22,6 +22,7 @@ import java.awt.*;
 
 public class BN extends ScreenAdapter implements InputProcessor {
 
+
     private float pointeurMinSize=0.45f;
     private float pointeurMaxSize=0.7f;
 
@@ -30,6 +31,7 @@ public class BN extends ScreenAdapter implements InputProcessor {
     private Texture echec = new Texture(Gdx.files.internal("battleshipressources/echec.png"));
 	private Texture boat = new Texture(Gdx.files.internal("battleshipressources/Boat.png"));
     private Texture grid = new Texture(Gdx.files.internal("grid.png"));;
+    private Texture background = new Texture(Gdx.files.internal("wallpaper2.jpg"));
     private Texture pointeur = new Texture(Gdx.files.internal("battleshipressources/pointeur.png"));
     private Texture pointeurXL = new Texture(Gdx.files.internal("battleshipressources/pointeurXL.png"));
 
@@ -81,14 +83,12 @@ public class BN extends ScreenAdapter implements InputProcessor {
 
     //String
     private String aiMsgWin="Vous avez perdue !";
-    private String playerMsgWin="Vous avez gagner !";
-    private String rater="Râté !";
-    private String toucher="Touchée !";
-    private String couler="Coulé ! ";
+    private String playerMsgWin="Vous avez gagne !";
+    private String rater="Rate !";
+    private String toucher="Touchee !";
+    private String couler="Coule ! ";
     private String messageText;
 
-    private Texture background;
-    private Image backgroundImage;
     private TheGame game;
     private Stage stage;
 
@@ -106,8 +106,8 @@ public class BN extends ScreenAdapter implements InputProcessor {
 
         Gdx.input.setInputProcessor(this);
         familyfont = new BitmapFont(true);
-        gridplayer = new Grid_player(grid, echec, fire, boat);
-        gridIA = new Grid(grid, echec, fire, boat);
+        gridplayer = new Grid_player(background, grid, echec, fire, boat);
+        gridIA = new Grid(background, grid, echec, fire, boat);
         ia = new IA();
         batch = new SpriteBatch();
         renderpoint = new ShapeRenderer();
@@ -152,11 +152,7 @@ public class BN extends ScreenAdapter implements InputProcessor {
 
     @Override
     public void render(float delta) {
-        stage = new Stage(new FitViewport(WORLD_WIDTH,WORLD_HEIGHT));
-        background = new Texture(Gdx.files.internal("wallpaper2.jpg"));
-        backgroundImage = new Image(background);
-        backgroundImage.setFillParent(true);
-        stage.addActor(backgroundImage);
+        
         camera.update();
 
         batch.setProjectionMatrix(camera.combined);
@@ -200,6 +196,7 @@ public class BN extends ScreenAdapter implements InputProcessor {
                 }
             }
         } batch.begin();
+
 
         if(actorGame == playerToPlay) {
             gridIA.draw(!Gdx.input.isKeyPressed(Input.Keys.S), batch);

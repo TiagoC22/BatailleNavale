@@ -11,8 +11,8 @@ public class Grid_player extends Grid {
     private int place;
 
 
-    public Grid_player(Texture texturebackground, Texture texturemiss, Texture texturecenter, Texture textureSE) {
-        super(texturebackground, texturemiss, texturecenter, textureSE); //Constructeur
+    public Grid_player(Texture texturebackground,Texture texturegridbackground, Texture texturemiss, Texture texturecenter, Texture textureSE) {
+        super(texturebackground, texturegridbackground, texturemiss, texturecenter, textureSE); //Constructeur
         pointeurMousePos = new Point(-1,-1);  //Réinitialisation de la position
         place = -1;
     }

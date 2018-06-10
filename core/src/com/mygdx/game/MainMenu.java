@@ -1,8 +1,9 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Game;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,11 +19,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
-
 //Projet bataille navale - UPMC 2018 @Tiago @Gautier
 
-public class MainMenu extends Game implements Screen  {
+public class MainMenu extends ScreenAdapter  {
     private int WORLD_WIDTH = Gdx.graphics.getWidth();
     private int WORLD_HEIGHT = Gdx.graphics.getHeight();
     private TheGame game;

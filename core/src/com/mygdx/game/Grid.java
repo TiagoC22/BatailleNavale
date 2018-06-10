@@ -15,14 +15,16 @@ public class Grid {
     public static int gridSize = 10;
     public static int cellSize = 64;
 
+    private Texture background;
     private Texture gridbackground;
     private Texture missSprite;
     protected Array<Boat> shipArray;
     private Array<Point> tryFindPos;
 
 
-    public Grid(Texture texturebackground, Texture texturemiss, Texture texturecenter, Texture textureSE) {
-        gridbackground = texturebackground;
+    public Grid(Texture texturebackground,Texture texturegridbackground, Texture texturemiss, Texture texturecenter, Texture textureSE) {
+        background = texturebackground;
+        gridbackground = texturegridbackground;
         missSprite = texturemiss;
         shipArray = new Array<Boat>();
         tryFindPos = new Array<Point>();
@@ -44,6 +46,7 @@ public class Grid {
 
 
     public void draw(boolean hide, Batch batch) {
+        batch.draw(background,0,0);
         batch.draw(gridbackground, 0, 0);
         for(Point p : tryFindPos)
             batch.draw(missSprite, p.x * cellSize, p.y * cellSize);
