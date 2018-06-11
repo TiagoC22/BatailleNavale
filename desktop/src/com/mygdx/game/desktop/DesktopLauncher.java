@@ -33,6 +33,8 @@ public class DesktopLauncher {
         config.title = "BatailleNavale";
         config.height = height;
         config.width = width;
+        //config.height = 640;
+        //config.width = 640;
 
         new LwjglApplication(new TheGame(), config);
     }
