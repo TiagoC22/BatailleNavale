@@ -47,11 +47,20 @@ public class Grid_player extends Grid {
         if(place >= 0 && place < shipArray.size) {
             Boat sPlace = shipArray.get(place);
             if(sPlace.horizontal()) {
-                if(sPlace.getSize() + xPos > gridSize)
+                if(sPlace.getSize() + xPos > gridSize){
                     xPos = gridSize - sPlace.getSize();
+                }
+                if(yPos > gridSize - 1){
+                    yPos = gridSize - 1;
+                }
+                    
             } else {
-                if(sPlace.getSize() + yPos > gridSize)
+                if(sPlace.getSize() + yPos > gridSize){
                     yPos = gridSize - sPlace.getSize();
+                }
+                if(xPos > gridSize - 1){
+                    xPos = gridSize - 1;
+                }
             } shipArray.get(place).setPosition(xPos, yPos);
         }
     }

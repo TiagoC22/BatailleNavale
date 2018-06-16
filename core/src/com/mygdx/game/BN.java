@@ -31,7 +31,7 @@ public class BN extends ScreenAdapter implements InputProcessor {
     private Texture echec = new Texture(Gdx.files.internal("battleshipressources/echec.png"));
 	private Texture boat = new Texture(Gdx.files.internal("battleshipressources/Boat.png"));
     private Texture grid = new Texture(Gdx.files.internal("grid.png"));;
-    private Texture background = new Texture(Gdx.files.internal("wallpaper.jpg"));
+    private Texture background = new Texture(Gdx.files.internal("black.jpg"));;
     private Texture pointeur = new Texture(Gdx.files.internal("battleshipressources/pointeur.png"));
     private Texture pointeurXL = new Texture(Gdx.files.internal("battleshipressources/pointeurXL.png"));
 
