@@ -1,6 +1,6 @@
 # BatailleNavale
 
-Ce jeu a été réalisée dans le cadre de la Licence "Projet web : Développement et communication multimédia" à Sorbonne Universités/
+Ce jeu a été réalisée dans le cadre de la Licence "Projet web : Développement et communication multimédia" à Sorbonne Universités.
 
 
 *Sommaire :*
@@ -27,6 +27,7 @@ Il s'agit d'un jeu Bataille navale, chaque joueur doit tout d'abord placer ses d
 -------------
 
   *a. Présentation*
+  
 Nous avons utiliser Libgdx durant le développement de notre application. Il s'agit d'un framework de développement de jeu gratuit développé en Java mais aussi une bibliothèque multiplateforme performante.
 Celui-ci possède différentes extensions qui ont été nécessaire à la programmation d'un jeu comme celui de la Bataille Navale que nous avions à faire.
 
@@ -46,9 +47,13 @@ Ce jeu possède différentes classes :
   
 Nous avons par ailleurs les classes regroupant les bateaux (BOAT)
 - 2 Destructeurs (2 cases)
+
 - 1 Sous-marin (3 cases)
+
 - 1 Croiseur (3 cases)
+
 - 1 Cuirasser (4 cases)
+
 - 1 Porte-avions (5 cases)
 
 
