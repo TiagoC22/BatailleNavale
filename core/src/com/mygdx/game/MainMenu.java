@@ -59,7 +59,7 @@ public class MainMenu extends ScreenAdapter  {
         stage.addActor(buttonExit);
         stage.addActor(buttonregles); //Add the button to the stage to perform rendering and take input.
 
-        //Bouton qui envoie le screen bleu de la bataille navale
+        //Bouton qui envoie vers la phase "Gameplay"
         buttonPlay.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event,float x,float y) {
@@ -68,6 +68,7 @@ public class MainMenu extends ScreenAdapter  {
             };
         });
 
+        //Bouton qui quitte le jeu
         buttonExit.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event,float x,float y) {
