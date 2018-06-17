@@ -10,9 +10,9 @@ I - Le Jeu
 
 II - Libgdx
 
-  a. Présentation
+   a. Présentation
   
-  b. Extensions
+   b. Extensions
   
 III - Les fonctionnalités
 
