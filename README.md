@@ -42,10 +42,11 @@ scene2d qui est un graphe de scène en 2D pour créer des applications et des in
 
 Ce jeu possède différentes classes :
 
-*BN.java*
+**BN.java**
+
   Il s'agit de la classe principale du jeu où l'on trouve le déroulement du jeu ainsi que les différentes actions qui peuvent exister durant la partie en cours. 
   
-Nous avons par ailleurs les classes regroupant les bateaux (BOAT)
+Nous avons par ailleurs les classes regroupant les bateaux **Boat.java**
 - 2 Destructeurs (2 cases)
 
 - 1 Sous-marin (3 cases)
