@@ -26,12 +26,12 @@ Il s'agit d'un jeu Bataille navale, chaque joueur doit tout d'abord placer ses d
 *II - Libgdx*
 -------------
 
-  *a. Présentation*
+  **a. Présentation**
   
 Nous avons utiliser Libgdx durant le développement de notre application. Il s'agit d'un framework de développement de jeu gratuit développé en Java mais aussi une bibliothèque multiplateforme performante.
 Celui-ci possède différentes extensions qui ont été nécessaire à la programmation d'un jeu comme celui de la Bataille Navale que nous avions à faire.
 
-  *b. Extensions*
+  **b. Extensions**
   
 gdxAI qui nous a été utile pour la création de l'intelligence artificielle se mesurant au joueur principal et source de prise de décisions. 
 
