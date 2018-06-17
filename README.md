@@ -7,10 +7,15 @@ Ce jeu a été réalisée dans le cadre de la Licence "Projet web : Développeme
 ------------
 
 I - Le Jeu 
+
 II - Libgdx
+
   a. Présentation
+  
   b. Extensions
+  
 III - Les fonctionnalités
+
 IV - Conclusion
 
 *I - Le jeu :*
