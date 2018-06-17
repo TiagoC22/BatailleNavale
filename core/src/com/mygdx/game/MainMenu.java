@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 //Projet bataille navale - UPMC 2018 @Tiago @Gautier
@@ -33,6 +35,10 @@ public class MainMenu extends ScreenAdapter  {
 
     private Button buttonPlay;
     private Button buttonExit;
+    private Texture textureregles;
+    private TextureRegion reglesregion;
+    private TextureRegionDrawable reglesregiondrawable;
+    private ImageButton buttonregles;
 
     public MainMenu(TheGame game) {
         this.game = game;
@@ -51,6 +57,7 @@ public class MainMenu extends ScreenAdapter  {
         stage.addActor(backgroundImage);
         stage.addActor(buttonPlay);
         stage.addActor(buttonExit);
+        stage.addActor(buttonregles); //Add the button to the stage to perform rendering and take input.
 
         //Bouton qui envoie le screen bleu de la bataille navale
         buttonPlay.addListener( new ClickListener() {
@@ -109,14 +116,20 @@ public class MainMenu extends ScreenAdapter  {
         Skin buttonsStyle = new Skin(Gdx.files.internal("skins/button.json"),new TextureAtlas("skins/button.pack.atlas"));
         buttonPlay = new ImageButton(buttonsStyle, "buttonP") ;
         buttonPlay.setX(WORLD_WIDTH / 2-250);
-        buttonPlay.setY(WORLD_HEIGHT / 2-200);
+        buttonPlay.setY(WORLD_HEIGHT / 2-100);
         buttonPlay.setWidth(166);
         buttonPlay.setHeight(68);
 
         buttonExit = new ImageButton(buttonsStyle, "buttonE") ;
         buttonExit.setX(WORLD_WIDTH / 2+100);
-        buttonExit.setY(WORLD_HEIGHT / 2-200);
+        buttonExit.setY(WORLD_HEIGHT / 2-100);
         buttonExit.setWidth(166);
         buttonExit.setHeight(68);
+
+        textureregles = new Texture(Gdx.files.internal("ui/regles.png"));
+        reglesregion = new TextureRegion(textureregles);
+        reglesregiondrawable = new TextureRegionDrawable(reglesregion);
+        buttonregles = new ImageButton(reglesregiondrawable); //Set the button up
+
     }
 }
