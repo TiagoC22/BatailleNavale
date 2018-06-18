@@ -2,6 +2,7 @@
 
 Ce jeu a été réalisée dans le cadre de la Licence "Projet web : Développement et communication multimédia" à Sorbonne Universités.
 
+![Alt text](bn.png?raw=true "Optional Title")
 
 *Sommaire :*
 ------------
