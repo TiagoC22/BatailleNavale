@@ -27,17 +27,17 @@ public class BN extends ScreenAdapter implements InputProcessor {
     private float pointeurMaxSize=0.7f;
 
     //Ressources
-	private Texture fire = new Texture(Gdx.files.internal("battleshipressources/fire.png"));;
+    private Texture fire = new Texture(Gdx.files.internal("battleshipressources/fire.png"));
     private Texture echec = new Texture(Gdx.files.internal("battleshipressources/echec.png"));
-	private Texture boat = new Texture(Gdx.files.internal("battleshipressources/Boat.png"));
-    private Texture grid = new Texture(Gdx.files.internal("grid.png"));;
-    private Texture background = new Texture(Gdx.files.internal("black.jpg"));;
+    private Texture boat = new Texture(Gdx.files.internal("battleshipressources/boat.png"));
+    private Texture grid = new Texture(Gdx.files.internal("grid.png"));
+    private Texture background = new Texture(Gdx.files.internal("black.jpg"));
     private Texture pointeur = new Texture(Gdx.files.internal("battleshipressources/pointeur.png"));
     private Texture pointeurXL = new Texture(Gdx.files.internal("battleshipressources/pointeurXL.png"));
 
     //Effets de sons
 	private Sound toucher_eau = Gdx.audio.newSound(Gdx.files.internal("sound/toucher-eau.mp3"));
-    private Sound toucher_bateau = Gdx.audio.newSound(Gdx.files.internal("sound/toucher-bateau.mp3"));;
+    private Sound toucher_bateau = Gdx.audio.newSound(Gdx.files.internal("sound/toucher-bateau.mp3"));
     private Sound detruit = Gdx.audio.newSound(Gdx.files.internal("sound/detruit.mp3"));
     private Music gamesound = Gdx.audio.newMusic(Gdx.files.internal("sound/game-soundtrack.mp3"));
 
